@@ -4,7 +4,7 @@
     "/content/doe-experimentation/configuration:/.helix/config.json",
     "/content/doe-experimentation/metadata:/metadata.json"
   ],
-  "includes:" [
+  "includes": [
     "/content/doe-experimentation/"
   ]
 }
