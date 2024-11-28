@@ -3,5 +3,8 @@
     "/content/doe-experimentation/:/",
     "/content/doe-experimentation/configuration:/.helix/config.json",
     "/content/doe-experimentation/metadata:/metadata.json"
+  ],
+  "includes:" [
+    "/content/doe-experimentation/"
   ]
 }
