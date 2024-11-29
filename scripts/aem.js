@@ -11,6 +11,8 @@
  */
 
 /* eslint-env browser */
+import {renameElement} from "./scripts.js";
+
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
   const timeShift = () => (window.performance ? window.performance.now() : Date.now() - window.hlx.rum.firstReadTime);
@@ -687,7 +689,8 @@ async function loadSection(section, loadCallback) {
     }
     if (loadCallback) await loadCallback(section);
     section.dataset.sectionStatus = 'loaded';
-    section.style.display = null;
+    const newSection = renameElement(section, 'section');
+    newSection.style.display = null;
   }
 }
 

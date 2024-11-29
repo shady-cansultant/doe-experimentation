@@ -14,6 +14,20 @@ import {
 } from './aem.js';
 
 /**
+ * Renames an element.
+ *
+ * @param element
+ * @param newTagName
+ */
+export function renameElement(element, newTagName) {
+  const newElement = document.createElement(newTagName);
+  moveAttributes(element, newElement, undefined);
+  newElement.append(...element.childNodes);
+  element.replaceWith(newElement);
+  return newElement;
+}
+
+/**
  * Moves all the attributes from a given elmenet to another given element.
  * @param {Element} from the element to copy attributes from
  * @param {Element} to the element to copy attributes to
@@ -21,7 +35,7 @@ import {
 export function moveAttributes(from, to, attributes) {
   if (!attributes) {
     // eslint-disable-next-line no-param-reassign
-    attributes = [...from.attributes].map(({ nodeName }) => nodeName);
+    attributes = [...from.attributes].map(({nodeName}) => nodeName);
   }
   attributes.forEach((attr) => {
     const value = from.getAttribute(attr);
@@ -42,7 +56,7 @@ export function moveInstrumentation(from, to) {
     from,
     to,
     [...from.attributes]
-      .map(({ nodeName }) => nodeName)
+      .map(({nodeName}) => nodeName)
       .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-')),
   );
 }
@@ -120,7 +134,7 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
 
-  const { hash } = window.location;
+  const {hash} = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
@@ -139,7 +153,7 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
-  import('./sidekick.js').then(({ initSidekick }) => initSidekick());
+  import('./sidekick.js').then(({initSidekick}) => initSidekick());
 }
 
 async function loadPage() {
