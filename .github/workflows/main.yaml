@@ -38,10 +38,10 @@ jobs:
         run: |
           before_commit=${{github.event.before}}
           
-          if git diff --quiet HEAD "$before_commit" -- ./dist; then
-          echo "No changes detected in the dist directory."
-          else
+          if git diff --name-only HEAD^ | grep -q '^dist/'; then
           echo "dist_changed=true" >> $GITHUB_ENV
+          else
+          echo "No changes detected in the dist directory."
           fi
 
       - name: Commit and push dist
