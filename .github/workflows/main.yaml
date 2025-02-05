@@ -45,7 +45,7 @@ jobs:
           fi
 
       - name: Commit and push dist
-        if: steps.check-dist-changes.outputs.dist_changed == 'true'
+        if: env.dist_changed == 'true'
         run: |
           git commit -m "Rebuild dist from CI"
           git push
