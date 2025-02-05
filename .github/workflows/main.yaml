@@ -1,8 +1,12 @@
 name: Build
-on: [push]
+
+on:
+  push:
+    branches-ignore:
+      - main
 
 jobs:
-  build:
+  build-and-commit-dist:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -12,3 +16,32 @@ jobs:
         node-version: 20
     - run: npm ci
     - run: npm run lint
+
+    - name: Build project
+      run: npm run build
+
+    - name: Setup git user
+      run: |
+        git config --local user.email "sibrahim@adobe.com"
+        git config --local user.name "Shady Bot"
+
+    - name: Add dist
+      run: |
+        git add -f ./dist
+
+    - name: Check if dist directory has changed
+      id: check-dist-changes
+      run: |
+        before_commit="$github.event.before"
+
+        if git diff --quiet HEAD "$before_commit" -- ./dist; then
+        echo "No changes detected in the dist directory."
+        else
+        echo "dist_changed=true" >> "$GITHUB_ENV"
+        fi
+
+    - name: Commit and push dist
+      if: steps.check-dist-changes.outputs.dist_changed == 'true'
+      run: |
+        git commit -m "Rebuild dist from CI"
+        git push
