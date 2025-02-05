@@ -32,7 +32,7 @@ jobs:
     - name: Check if dist directory has changed
       id: check-dist-changes
       run: |
-        before_commit="$github.event.before"
+        before_commit="${{github.event.before}}"
 
         if git diff --quiet HEAD "$before_commit" -- ./dist; then
         echo "No changes detected in the dist directory."
