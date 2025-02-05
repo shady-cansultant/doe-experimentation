@@ -32,17 +32,24 @@ jobs:
         run: |
           git add -f ./dist
 
-      - name: Check if dist directory has changed
-        id: check-dist-changes
+      - name: Check modified files
+        id: check-files
         shell: bash
         run: |
-          before_commit=${{github.event.before}}
+          echo "=============== list modified files ==============="
+          git diff --name-only HEAD^ HEAD
           
-          if git diff --name-only HEAD^ | grep -q '^dist/'; then
-          echo "dist_changed=true" >> $GITHUB_ENV
-          else
-          echo "No changes detected in the dist directory."
+          echo "========== check paths of modified files =========="
+          git diff --name-only HEAD^ HEAD > files.txt
+          while IFS= read -r file
+          do
+          echo $file
+          if [[ $file == dist/* ]]; then
+          echo "Dist file change detected"
+          echo "dist_changed=true" >> "$GITHUB_ENV"
+          break
           fi
+          done < files.txt
 
       - name: Commit and push dist
         if: env.dist_changed == 'true'
