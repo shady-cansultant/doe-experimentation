@@ -1,4 +1,7 @@
+import './eager.scss';
+
+// append the accordion to the body
 document.addEventListener('DOMContentLoaded', () => {
-  // eslint-disable-next-line
-  alert('js loaded successfully');
+  import('./lazy.scss');
+  import('nsw-design-system/dist/js/main.js').then(({ default: nsw }) => nsw.initSite());
 });
