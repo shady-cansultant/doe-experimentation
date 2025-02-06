@@ -122,14 +122,15 @@ function setup() {
   window.hlx.codeBasePath = '';
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
 
-  const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
+  const mainScriptDestination = '/dist/main/main.js';
+  const scriptEl = document.querySelector(`script[src$="${mainScriptDestination}"]`);
   if (scriptEl) {
     try {
       const scriptURL = new URL(scriptEl.src, window.location);
       if (scriptURL.host === window.location.host) {
-        [window.hlx.codeBasePath] = scriptURL.pathname.split('/scripts/scripts.js');
+        [window.hlx.codeBasePath] = scriptURL.pathname.split(mainScriptDestination);
       } else {
-        [window.hlx.codeBasePath] = scriptURL.href.split('/scripts/scripts.js');
+        [window.hlx.codeBasePath] = scriptURL.href.split(mainScriptDestination);
       }
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -575,12 +576,11 @@ async function loadBlock(block) {
     block.dataset.blockStatus = 'loading';
     const { blockName } = block.dataset;
     try {
-      const cssLoaded = loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`);
       const decorationComplete = new Promise((resolve) => {
         (async () => {
           try {
             const mod = await import(
-              `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`
+              `../blocks/${blockName}/${blockName}.js`
             );
             if (mod.default) {
               await mod.default(block);
@@ -592,7 +592,7 @@ async function loadBlock(block) {
           resolve();
         })();
       });
-      await Promise.all([cssLoaded, decorationComplete]);
+      await Promise.all([decorationComplete]);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(`failed to load block ${blockName}`, error);

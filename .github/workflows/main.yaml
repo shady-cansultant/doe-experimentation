@@ -1,14 +1,55 @@
 name: Build
-on: [push]
+
+on:
+  push:
+    branches-ignore:
+      - main
 
 jobs:
-  build:
+  build-and-commit-dist:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js 20
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-    - run: npm ci
-    - run: npm run lint
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run lint
+
+      - name: Build project
+        run: npm run build
+
+      - name: Setup git user
+        run: |
+          git config --local user.email "sibrahim@adobe.com"
+          git config --local user.name "Shady Bot"
+
+      - name: Check modified files
+        id: check-files
+        shell: bash
+        run: |
+          echo "=============== list modified files ==============="
+          git ls-files --others --exclude-standard
+          
+          echo "========== check paths of modified files =========="
+          git ls-files --others --exclude-standard > files.txt
+          while IFS= read -r file
+          do
+          echo $file
+          if [[ $file == dist/* ]]; then
+          echo "Dist file change detected"
+          echo "dist_changed=true" >> "$GITHUB_ENV"
+          break
+          fi
+          done < files.txt
+
+      - name: Commit and push dist
+        if: env.dist_changed == 'true'
+        run: |
+          git add -f ./dist
+          git commit -m "Rebuild dist from CI"
+          git push
