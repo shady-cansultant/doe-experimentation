@@ -27,6 +27,7 @@ export default defineConfig(() => ({
       preserveEntrySignatures: 'strict',
       input: {
         main: './src/main.js',
+        ue: './src/scripts/editor-support.js',
       },
       output: {
         dir: 'dist',
