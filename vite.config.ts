@@ -25,7 +25,7 @@ export default defineConfig(() => ({
       output: {
         dir: 'dist',
         assetFileNames: () => '[name]/[name][extname]',
-        chunkFileNames: '__chunks__/[name]-[hash].js',
+        chunkFileNames: 'chunks/[name]-[hash].js',
         entryFileNames: '[name]/[name].js',
       },
       plugins: [isProd],
