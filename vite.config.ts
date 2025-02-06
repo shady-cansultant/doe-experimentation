@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -7,6 +8,11 @@ export default defineConfig(() => ({
   base: './',
   css: {
     devSourcemap: true,
+  },
+  resolve: {
+    alias: {
+      Blocks: resolve(__dirname, 'src/blocks'),
+    },
   },
   build: {
     sourcemap: true,
