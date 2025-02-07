@@ -1,6 +1,5 @@
 import './scripts/aem.js';
 import './scripts/scripts.js';
-import './eager.scss';
 
 // append the accordion to the body
 document.addEventListener('DOMContentLoaded', () => {
