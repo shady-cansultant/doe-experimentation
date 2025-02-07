@@ -23,13 +23,14 @@ export default function decorate(block) {
           titleDiv = document.createElement('div');
           titleDiv.className = 'nsw-card__title';
 
-          titleDiv.append(header);
-
           if (header.querySelector('a')) {
             // unwrap the header
             const a = header.querySelector('a');
             moveInstrumentation(header, a);
-            header.replaceWith(a);
+            titleDiv.append(a);
+            header.remove();
+          } else {
+            titleDiv.append(header);
           }
         }
 
