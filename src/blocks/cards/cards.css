@@ -9,6 +9,6 @@
 
 
 /* eslint-disable-next-line */
-[data-block-name="cards"] .nsw-card__title a::after {
+[data-aue-model="card"] .nsw-card__title a::after {
     display: none;
 }
