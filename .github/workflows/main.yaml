@@ -20,7 +20,7 @@ jobs:
       - run: npm ci
 
       - name: Run Vitest with Coverage
-        run: npx vitest --coverage
+        run: npx vitest --run
 
       - run: npm run lint
 
