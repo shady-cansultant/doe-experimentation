@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+
+      - name: Run Vitest with Coverage
+        run: npx vitest --coverage
+
       - run: npm run lint
 
       - name: Build project
