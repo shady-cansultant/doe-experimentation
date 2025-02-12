@@ -8,6 +8,19 @@ export default defineConfig(() => ({
   base: './',
   css: {
     devSourcemap: true,
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+        @import 'nsw-design-system/src/global/scss/settings/settings';
+@import 'nsw-design-system/src/global/scss/base/all';
+@import 'nsw-design-system/src/global/scss/helpers/all';
+@import 'nsw-design-system/src/global/scss/settings/palette';
+@import 'nsw-design-system/src/global/scss/settings/theme';
+@import 'nsw-design-system/src/core/all';
+        `,
+        api: 'modern',
+      },
+    },
   },
   resolve: {
     alias: {

@@ -22,6 +22,10 @@ export function decorateRichtext(container = document) {
       richtextFilter,
       richtextLabel,
     } = element.dataset;
+    if (!element.nextElementSibling) {
+      return;
+    }
+
     deleteInstrumentation(element);
     const siblings = [];
     let sibling = element;
