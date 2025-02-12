@@ -17,6 +17,8 @@ export default function decorate(block) {
       else if (div.children.length > 0) {
         div.className = 'nsw-card__content';
 
+        const innerDiv = document.createElement('div');
+
         let titleDiv;
         const header = div.querySelector(':is(h1,h2,h3,h4,h5,h6)');
         if (header) {
@@ -27,7 +29,7 @@ export default function decorate(block) {
             // unwrap the header
             const a = header.querySelector('a');
             const p = document.createElement('p');
-            moveInstrumentation(header, div);
+            moveInstrumentation(header, innerDiv);
             p.append(a);
             titleDiv.append(p);
             header.remove();
@@ -36,18 +38,18 @@ export default function decorate(block) {
           }
         }
 
+        if (titleDiv) innerDiv.prepend(titleDiv);
+
         // the rest is wrapped in a "nsw-card__copy" div
         const copyDiv = document.createElement('div');
         copyDiv.className = 'nsw-card__copy';
         [...div.children].forEach((child) => {
           if (child !== titleDiv) {
             copyDiv.append(child);
-            moveInstrumentation(child, div);
+            moveInstrumentation(child, innerDiv);
           }
         });
-        div.append(copyDiv);
-
-        if (titleDiv) div.prepend(titleDiv);
+        innerDiv.append(copyDiv);
 
         const icon = document.createElement('span');
         icon.className = 'material-icons nsw-material-icons';
@@ -55,6 +57,7 @@ export default function decorate(block) {
         icon.setAttribute('aria-hidden', 'true');
         icon.textContent = 'east';
 
+        div.append(innerDiv);
         div.append(icon);
       } else div.remove();
     });
