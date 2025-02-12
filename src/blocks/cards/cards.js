@@ -27,7 +27,7 @@ export default function decorate(block) {
             // unwrap the header
             const a = header.querySelector('a');
             const p = document.createElement('p');
-            moveInstrumentation(header, p);
+            moveInstrumentation(header, div);
             p.append(a);
             titleDiv.append(p);
             header.remove();
@@ -40,7 +40,10 @@ export default function decorate(block) {
         const copyDiv = document.createElement('div');
         copyDiv.className = 'nsw-card__copy';
         [...div.children].forEach((child) => {
-          if (child !== titleDiv) copyDiv.append(child);
+          if (child !== titleDiv) {
+            copyDiv.append(child);
+            moveInstrumentation(child, div);
+          }
         });
         div.append(copyDiv);
 
