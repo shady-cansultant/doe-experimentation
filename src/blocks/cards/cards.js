@@ -1,5 +1,5 @@
-import './cards.css';
 import 'nsw-design-system/src/components/card/_card.scss';
+import './cards.css';
 
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
