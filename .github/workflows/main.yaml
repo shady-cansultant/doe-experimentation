@@ -36,7 +36,7 @@ jobs:
           git ls-files --modified --others --exclude-standard
           
           echo "========== check paths of modified files =========="
-          git ls-files --others --exclude-standard > files.txt
+          git ls-files --modified --others --exclude-standard > files.txt
           while IFS= read -r file
           do
           echo $file
