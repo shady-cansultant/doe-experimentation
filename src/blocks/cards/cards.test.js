@@ -15,8 +15,7 @@ function normalizeDOM(node) {
 
   // Recursively trim text nodes
   const walker = document.createTreeWalker(clone, NodeFilter.SHOW_TEXT, null);
-  let textNode;
-  while ((textNode = walker.nextNode())) {
+  for (let textNode = walker.nextNode(); textNode; textNode = walker.nextNode()) {
     textNode.nodeValue = textNode.nodeValue.trim();
   }
 
@@ -27,12 +26,8 @@ function normalizeDOM(node) {
         .sort((a, b) => a.name.localeCompare(b.name));
 
       // Remove all attributes and re-add them in sorted order
-      for (const attr of attrs) {
-        el.removeAttribute(attr.name);
-      }
-      for (const attr of attrs) {
-        el.setAttribute(attr.name, attr.value.trim());
-      }
+      attrs.forEach((attr) => el.removeAttribute(attr.name));
+      attrs.forEach((attr) => el.setAttribute(attr.name, attr.value.trim()));
     }
     Array.from(el.children).forEach(sortAttributes);
   }
