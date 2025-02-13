@@ -116,7 +116,7 @@
     "fields": [
       {
         "component": "select",
-        "name": "classes",
+        "name": "notclasses",
         "value": "",
         "label": "Background Color",
         "description": "The marquee background color",
