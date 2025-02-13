@@ -33,6 +33,55 @@
   ],
   "models": [
     {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "label": "Card Style",
+          "description": "The card style",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Theme",
+              "children": [
+                {
+                  "name": "Light",
+                  "value": "light"
+                },
+                {
+                  "name": "Dark",
+                  "value": "dark"
+                }
+              ]
+            },
+            {
+              "name": "Orientation",
+              "children": [
+                {
+                  "name": "Horizontal",
+                  "value": "horizontal"
+                },
+                {
+                  "name": "Vertical",
+                  "value": "vertical"
+                }
+              ]
+            },
+            {
+              "name": "Highlight",
+              "children": [
+                {
+                  "name": "Highlight",
+                  "value": "highlight"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "card",
       "fields": [
         {
@@ -43,10 +92,31 @@
           "multi": false
         },
         {
+          "component": "text",
+          "name": "linkText",
+          "value": "",
+          "label": "Headline",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "link",
+          "value": "",
+          "label": "Link",
+          "valueType": "string"
+        },
+        {
           "component": "richtext",
           "name": "text",
           "value": "",
           "label": "Text",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "trailingIcon",
+          "value": "",
+          "label": "Trailing Icon",
           "valueType": "string"
         }
       ]
