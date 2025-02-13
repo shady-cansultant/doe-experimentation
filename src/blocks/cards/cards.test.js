@@ -72,7 +72,7 @@ describe('Card', () => {
               <div class="nsw-card__content">
                   <div data-richtext-prop="text" data-richtext-label="text" data-richtext-filter="text">
                       <div class="nsw-card__title">
-                          <p><a href="www.google.com">Shady Header</a></p>
+                         <a href="www.google.com">Shady Header</a>
                       </div>
                       
                       <div class="nsw-card__copy">

@@ -28,10 +28,8 @@ export default function decorate(block) {
           if (header.querySelector('a')) {
             // unwrap the header
             const a = header.querySelector('a');
-            const p = document.createElement('p');
             moveInstrumentation(header, innerDiv);
-            p.append(a);
-            titleDiv.append(p);
+            titleDiv.append(a);
             header.remove();
           } else {
             titleDiv.append(header);
