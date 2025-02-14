@@ -46,41 +46,61 @@ describe('Card', () => {
   });
 
   it('Should be able to apply listing to a card', () => {
-    const starting = `<div id="shady" data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_50055192/block"
-         data-aue-type="container" data-aue-behavior="component" data-aue-label="Cards" data-aue-filter="cards"
-         class="cards">
-        <div data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_50055192/block/item"
-             data-aue-type="component" data-aue-model="card" data-aue-label="Card">
-
-            <div></div>
-
-            <div>
-                <h1 data-richtext-prop="text" data-richtext-label="text" data-richtext-filter="text"><a
-                        href="www.google.com">Shady Header</a></h1>
-                <p data-richtext-prop="text" data-richtext-label="text" data-richtext-filter="text">Shady content</p>
-            </div>
-
-        </div>
+    const starting = `<div id="shady" 
+    data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_522321914/block_1115629554" 
+    data-aue-type="container" 
+    data-aue-behavior="component" 
+    data-aue-model="cards" 
+    data-aue-label="Cards" 
+    data-aue-filter="cards" 
+    class="cards highlight">
+    <div data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_522321914/block_1115629554/item" 
+         data-aue-type="component" 
+         data-aue-model="card" 
+         data-aue-label="Card">
+            <div><picture><img src="/content/dam/doe-experimentation/content-at-scale.png" data-aue-prop="image" data-aue-label="Image" data-aue-type="media"></picture></div>
+        
+            <div><a href="https://www.yahoo.com/" data-aue-prop="linkText" data-aue-label="Headline" data-aue-type="text">This is the headline</a></div>
+        
+            <div data-richtext-prop="text" data-richtext-label="Text" data-richtext-filter="text">This is some text</div>
+        
+            <div data-aue-prop="trailingIcon" data-aue-label="Trailing Icon" data-aue-type="text"><span class="icon icon-search"></span></div>
+       </div>
     </div>`;
 
     const expected = parseHTML(`
-     <div class="cards" data-aue-behavior="component" data-aue-filter="cards" data-aue-label="Cards" data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_50055192/block" data-aue-type="container" id="shady">
+     <div id="shady"
+     data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_522321914/block_1115629554" 
+     data-aue-type="container" 
+     data-aue-behavior="component" 
+     data-aue-model="cards" 
+     data-aue-label="Cards" 
+     data-aue-filter="cards" 
+     class="cards highlight">
       <ul>
           <li class="nsw-card nsw-card--dark" 
-          data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_50055192/block/item" 
+          data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_522321914/block_1115629554/item" 
           data-aue-type="component" data-aue-model="card" data-aue-label="Card">
+              <div class="nsw-card__image">
+                 <picture>
+                    <source srcset="/content/dam/doe-experimentation/content-at-scale.png?width=750&amp;format=webply&amp;optimize=medium"
+                            type="image/webp">
+                    <img alt="" data-aue-label="Image" data-aue-prop="image" data-aue-type="media" loading="lazy"
+                         src="/content/dam/doe-experimentation/content-at-scale.png?width=750&amp;format=png&amp;optimize=medium">
+                </picture> 
+              </div>
               <div class="nsw-card__content">
-                  <div data-richtext-prop="text" data-richtext-label="text" data-richtext-filter="text">
-                      <div class="nsw-card__title">
-                         <a href="www.google.com">Shady Header</a>
-                      </div>
-                      
-                      <div class="nsw-card__copy">
-                          <p>Shady content</p>
-                      </div>
+                  <div class="nsw-card__title">
+                     <a href="https://www.yahoo.com/" data-aue-prop="linkText" data-aue-label="Headline" data-aue-type="text">This is the headline</a>
                   </div>
                   
-                  <span class="material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
+                  <div class="nsw-card__copy">
+                     <div data-richtext-prop="text" data-richtext-label="Text" data-richtext-filter="text">This is some text</div>
+                  </div>
+                  
+                  <div data-aue-prop="trailingIcon" data-aue-label="Trailing Icon" data-aue-type="text">
+                     <span class="icon icon-search material-icons nsw-material-icons" focusable="false" aria-hidden="true"></span>
+                  </div>
               </div>
           </li>
       </ul>

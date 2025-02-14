@@ -12,53 +12,62 @@ export default function decorate(block) {
     li.classList.add('nsw-card', 'nsw-card--dark');
     moveInstrumentation(row, li);
     while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'nsw-card__image';
-      else if (div.children.length > 0) {
-        div.className = 'nsw-card__content';
 
-        const rteDivWrapper = document.createElement('div');
+    const [firstColumn, secondDiv, thirdDiv, fourthDiv] = li.children;
 
-        let titleDiv;
-        const header = div.querySelector(':is(h1,h2,h3,h4,h5,h6)');
-        if (header) {
-          titleDiv = document.createElement('div');
-          titleDiv.className = 'nsw-card__title';
+    // case (1) - Image exists
+    if (firstColumn.querySelector('picture')) {
+      firstColumn.className = 'nsw-card__image';
+    } else {
+      // remove the div
+      firstColumn.remove();
+    }
 
-          if (header.querySelector('a')) {
-            // unwrap the header
-            const a = header.querySelector('a');
-            moveInstrumentation(header, rteDivWrapper);
-            titleDiv.append(a);
-            header.remove();
-          } else {
-            titleDiv.append(header);
-          }
-        }
+    // case (2) - Second div Headline (required)
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'nsw-card__content';
 
-        if (titleDiv) rteDivWrapper.prepend(titleDiv);
+    const titleWrapper = document.createElement('div');
+    titleWrapper.className = 'nsw-card__title';
 
-        // the rest is wrapped in a "nsw-card__copy" div
-        const copyDiv = document.createElement('div');
-        copyDiv.className = 'nsw-card__copy';
-        [...div.children].forEach((child) => {
-          if (child !== titleDiv) {
-            copyDiv.append(child);
-            moveInstrumentation(child, rteDivWrapper);
-          }
-        });
-        rteDivWrapper.append(copyDiv);
+    // move the children of the second div to the titleWrapper
+    while (secondDiv.firstElementChild) titleWrapper.append(secondDiv.firstElementChild);
 
-        const icon = document.createElement('span');
-        icon.className = 'material-icons nsw-material-icons';
+    contentWrapper.append(titleWrapper);
+
+    // insert after the firstColumn
+    firstColumn.after(contentWrapper);
+
+    secondDiv.remove();
+
+    // case (3) - Third div Text (optional)
+    if (thirdDiv.innerHTML.trim()) {
+      const copyWrapper = document.createElement('div');
+      copyWrapper.className = 'nsw-card__copy';
+
+      copyWrapper.append(thirdDiv);
+
+      // insert after the third div
+      contentWrapper.append(copyWrapper);
+    } else {
+      thirdDiv.remove();
+    }
+
+    // case (4) - Fourth div Trailing Icon (optional)
+    if (fourthDiv.innerHTML.trim()) {
+      // get the current type of icon
+      const icon = fourthDiv.querySelector('.icon');
+      if (icon) {
+        icon.classList.add('material-icons', 'nsw-material-icons');
         icon.setAttribute('focusable', 'false');
         icon.setAttribute('aria-hidden', 'true');
-        icon.textContent = 'east';
+        icon.textContent = '';
+        contentWrapper.append(fourthDiv);
+      } else {
+        fourthDiv.remove();
+      }
+    }
 
-        div.append(rteDivWrapper);
-        div.append(icon);
-      } else div.remove();
-    });
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => {
