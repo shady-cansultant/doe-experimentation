@@ -99,7 +99,7 @@ describe('Card', () => {
                   </div>
                   
                   <div data-aue-prop="trailingIcon" data-aue-label="Trailing Icon" data-aue-type="text">
-                     <span class="icon icon-search material-icons nsw-material-icons" focusable="false" aria-hidden="true"></span>
+                     <span class="icon icon-search material-icons nsw-material-icons" focusable="false" aria-hidden="true">east</span>
                   </div>
               </div>
           </li>

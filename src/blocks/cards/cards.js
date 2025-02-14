@@ -33,6 +33,16 @@ export default function decorate(block) {
     // move the children of the second div to the titleWrapper
     while (secondDiv.firstElementChild) titleWrapper.append(secondDiv.firstElementChild);
 
+    // remove the p wrapper around the <a> tag
+    const a = titleWrapper.querySelector('a');
+    if (a) {
+      const p = a.closest('p');
+      if (p) {
+        p.replaceWith(a);
+        a.classList.remove('button');
+      }
+    }
+
     contentWrapper.append(titleWrapper);
 
     // insert after the firstColumn
@@ -58,10 +68,15 @@ export default function decorate(block) {
       // get the current type of icon
       const icon = fourthDiv.querySelector('.icon');
       if (icon) {
+        const p = icon.closest('p');
+        if (p) {
+          p.replaceWith(icon);
+        }
+
         icon.classList.add('material-icons', 'nsw-material-icons');
         icon.setAttribute('focusable', 'false');
         icon.setAttribute('aria-hidden', 'true');
-        icon.textContent = '';
+        icon.textContent = 'east';
         contentWrapper.append(fourthDiv);
       } else {
         fourthDiv.remove();
