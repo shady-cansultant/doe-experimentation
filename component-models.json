@@ -115,24 +115,46 @@
     "id": "cards",
     "fields": [
       {
-        "component": "select",
-        "name": "notclasses",
-        "value": "",
-        "label": "Background Color",
-        "description": "The marquee background color",
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Card Style",
+        "description": "The card style",
         "valueType": "string",
         "options": [
           {
-            "name": "Red",
-            "value": "bg-red"
+            "name": "Theme",
+            "children": [
+              {
+                "name": "Light",
+                "value": "light"
+              },
+              {
+                "name": "Dark",
+                "value": "dark"
+              }
+            ]
           },
           {
-            "name": "Green",
-            "value": "bg-green"
+            "name": "Orientation",
+            "children": [
+              {
+                "name": "Horizontal",
+                "value": "horizontal"
+              },
+              {
+                "name": "Vertical",
+                "value": "vertical"
+              }
+            ]
           },
           {
-            "name": "Blue",
-            "value": "bg-blue"
+            "name": "Highlight",
+            "children": [
+              {
+                "name": "Highlight",
+                "value": "highlight"
+              }
+            ]
           }
         ]
       }
