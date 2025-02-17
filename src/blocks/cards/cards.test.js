@@ -94,8 +94,8 @@ describe('Card', () => {
                      <a href="https://www.yahoo.com/" data-aue-prop="linkText" data-aue-label="Headline" data-aue-type="text">This is the headline</a>
                   </div>
                   
-                  <div class="nsw-card__copy">
-                     <div data-richtext-prop="text" data-richtext-label="Text" data-richtext-filter="text">This is some text</div>
+                  <div class="nsw-card__copy"  data-richtext-prop="text" data-richtext-label="Text" data-richtext-filter="text">
+                     This is some text
                   </div>
                   
                   <div data-aue-prop="trailingIcon" data-aue-label="Trailing Icon" data-aue-type="text">

@@ -52,13 +52,15 @@ export default function decorate(block) {
 
     // case (3) - Third div Text (optional)
     if (thirdDiv.innerHTML.trim()) {
-      const copyWrapper = document.createElement('div');
-      copyWrapper.className = 'nsw-card__copy';
+      // const copyWrapper = document.createElement('div');
+      // copyWrapper.className = 'nsw-card__copy';
 
-      copyWrapper.append(thirdDiv);
+      // copyWrapper.append(thirdDiv);
+
+      thirdDiv.classList.add('nsw-card__copy');
 
       // insert after the third div
-      contentWrapper.append(copyWrapper);
+      contentWrapper.append(thirdDiv);
     } else {
       thirdDiv.remove();
     }
