@@ -52,11 +52,6 @@ export default function decorate(block) {
 
     // case (3) - Third div Text (optional)
     if (thirdDiv.innerHTML.trim()) {
-      // const copyWrapper = document.createElement('div');
-      // copyWrapper.className = 'nsw-card__copy';
-
-      // copyWrapper.append(thirdDiv);
-
       thirdDiv.classList.add('nsw-card__copy');
 
       // insert after the third div
@@ -70,10 +65,24 @@ export default function decorate(block) {
       // get the current type of icon
       const icon = fourthDiv.querySelector('.icon');
       if (icon) {
-        icon.classList.add('material-icons', 'nsw-material-icons');
-        icon.setAttribute('focusable', 'false');
-        icon.setAttribute('aria-hidden', 'true');
-        icon.textContent = 'east';
+        const p = icon.closest('p');
+        if (p) {
+          moveInstrumentation(icon, p);
+
+          // move the classes from icon to p
+          p.classList.add(...icon.classList);
+
+          p.classList.add('material-icons', 'nsw-material-icons');
+          p.setAttribute('focusable', 'false');
+          p.setAttribute('aria-hidden', 'true');
+          p.textContent = 'east';
+        } else {
+          icon.classList.add('material-icons', 'nsw-material-icons');
+          icon.setAttribute('focusable', 'false');
+          icon.setAttribute('aria-hidden', 'true');
+          icon.textContent = 'east';
+        }
+
         contentWrapper.append(fourthDiv);
       } else {
         fourthDiv.remove();
