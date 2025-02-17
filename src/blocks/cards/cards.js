@@ -70,11 +70,6 @@ export default function decorate(block) {
       // get the current type of icon
       const icon = fourthDiv.querySelector('.icon');
       if (icon) {
-        const p = icon.closest('p');
-        if (p) {
-          p.replaceWith(icon);
-        }
-
         icon.classList.add('material-icons', 'nsw-material-icons');
         icon.setAttribute('focusable', 'false');
         icon.setAttribute('aria-hidden', 'true');
