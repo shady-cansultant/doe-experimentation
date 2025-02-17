@@ -82,11 +82,8 @@ export default function decorate(block) {
           icon.setAttribute('aria-hidden', 'true');
           icon.textContent = 'east';
         }
-
-        contentWrapper.append(fourthDiv);
-      } else {
-        fourthDiv.remove();
       }
+      contentWrapper.append(fourthDiv);
     }
 
     ul.append(li);
