@@ -143,6 +143,11 @@ function loadDelayed() {
 }
 
 async function loadPage() {
+  // skip if in test mode
+  if ((typeof process !== 'undefined') && process?.env?.VITEST) {
+    return;
+  }
+
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
