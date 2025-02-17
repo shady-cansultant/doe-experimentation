@@ -9,7 +9,7 @@ export default function decorate(block) {
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
-    li.classList.add('nsw-card', 'nsw-card--dark');
+    li.classList.add('nsw-card');
     moveInstrumentation(row, li);
     while (row.firstElementChild) li.append(row.firstElementChild);
 
@@ -87,6 +87,23 @@ export default function decorate(block) {
     }
 
     ul.append(li);
+
+    // add variation classes
+    if (block.classList.contains('highlight')) {
+      li.classList.add('nsw-card--highlight');
+    }
+
+    if (block.classList.contains('dark')) {
+      li.classList.add('nsw-card--dark');
+    }
+
+    if (block.classList.contains('light')) {
+      li.classList.add('nsw-card--light');
+    }
+
+    if (block.classList.contains('horizontal')) {
+      li.classList.add('nsw-card--horizontal');
+    }
   });
   ul.querySelectorAll('picture > img').forEach((img) => {
     const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
