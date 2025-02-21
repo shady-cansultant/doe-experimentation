@@ -25,6 +25,7 @@ export default defineConfig(() => {
         resolve: {
             alias: {
                 Blocks: resolve(__dirname, 'src/blocks'),
+                Styles: resolve(__dirname, 'src/styles'),
             },
         },
         build: {
