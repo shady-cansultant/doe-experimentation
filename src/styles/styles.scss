@@ -1,0 +1,39 @@
+// Base
+@import "nsw-design-system/src/global/scss/base/global";
+
+// Settings
+@import "./settings/theme";
+@import "./settings/palette";
+
+// Helpers
+//@import 'nsw-design-system/src/global/scss/helpers/list';
+//@import 'nsw-design-system/src/global/scss/helpers/text';
+//@import 'nsw-design-system/src/global/scss/helpers/spacing';
+//@import 'nsw-design-system/src/global/scss/helpers/vertical-rule';
+//@import 'nsw-design-system/src/global/scss/helpers/visibility';
+@import 'nsw-design-system/src/global/scss/helpers/api';
+
+// Core
+@import "./core/grid";
+@import "./core/icon";
+@import "./core/layout";
+@import "./core/section";
+@import "./core/typography";
+
+:root {
+  --nav-height: 64px;
+}
+
+header {
+  height: var(--nav-height);
+}
+
+header .header,
+footer .footer {
+  visibility: hidden;
+}
+
+header .header[data-block-status="loaded"],
+footer .footer[data-block-status="loaded"] {
+  visibility: visible;
+}

@@ -1,0 +1,87 @@
+@use 'sass:color';
+
+// Theme Colours
+$brand-dark: $blue-01 !default;
+$brand-light: $blue-04 !default;
+$brand-supplementary: $blue-02 !default;
+$brand-accent: $red-02 !default;
+$off-white: $grey-50 !default;
+
+// Text Colours
+$text-dark: $grey-01 !default;
+$text-light: $white !default;
+
+// Semantic Colours
+$success: #008a07 !default;
+$success-bg: #e5f6e6 !default;
+$info: #2e5299 !default;
+$info-bg: #eaedf4 !default;
+$warning: #c95000 !default;
+$warning-bg: #fbeee5 !default;
+$error: #b81237 !default;
+$error-bg: #f7e7eb !default;
+
+$theme-colors: (
+        'brand-dark': $brand-dark,
+        'brand-light': $brand-light,
+        'brand-supplementary': $brand-supplementary,
+        'brand-accent': $brand-accent,
+        'black': $black,
+        'grey-01': $grey-01,
+        'grey-02': $grey-02,
+        'grey-03': $grey-03,
+        'grey-04': $grey-04,
+        'off-white': $off-white,
+        'white': $white
+) !default;
+
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value') !default;
+
+$text-colors: (
+        'text-dark': $text-dark,
+        'text-light': $text-light
+) !default;
+
+$text-colors-rgb: map-loop($text-colors, to-rgb, '$value') !default;
+
+$semantic-colors: (
+        'success': $success,
+        'success-bg': $success-bg,
+        'info': $info,
+        'info-bg': $info-bg,
+        'warning': $warning,
+        'warning-bg': $warning-bg,
+        'error': $error,
+        'error-bg': $error-bg
+) !default;
+
+$semantic-colors-rgb: map-loop($semantic-colors, to-rgb, '$value') !default;
+
+// State Colours
+$link: $brand-dark !default;
+$link-light: tint($brand-dark, 90%) !default;
+$visited: a11y-color(lighten(desaturate(adjust-hue($brand-dark, 54), 31.52), 12.75), #ffffff) !default;
+$visited-light: tint($visited, 80%) !default;
+$hover: color.adjust($brand-dark, $alpha: -0.9) !default;
+$hover-light: color.adjust($link-light, $alpha: -0.9) !default;
+$active: color.adjust($brand-dark, $alpha: -0.8) !default;
+$active-light: color.adjust($link-light, $alpha: -0.8) !default;
+$focus: lighten(adjust-hue($brand-dark, -22), 15.49) !default;
+$focus-light: tint($focus, 80%);
+$disabled: tint($brand-dark, 50%) !default;
+
+$state-colors: (
+        'link': $link,
+        'link-light': $link-light,
+        'visited': $visited,
+        'visited-light': $visited-light,
+        'hover': $hover,
+        'hover-light': $hover-light,
+        'active': $active,
+        'active-light': $active-light,
+        'focus': $focus,
+        'focus-light': $focus-light,
+        'disabled': $disabled
+) !default;
+
+$state-colors-rgb: map-loop($state-colors, to-rgb, '$value') !default;

@@ -7,13 +7,14 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
+
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
     li.classList.add('nsw-card');
     moveInstrumentation(row, li);
     while (row.firstElementChild) li.append(row.firstElementChild);
 
-    const [firstColumn, secondDiv, thirdDiv, fourthDiv] = li.children;
+    const [firstColumn, secondColumn, thirdColumn, fourthColumn] = li.children;
 
     // case (1) - Image exists
     if (firstColumn.querySelector('picture')) {
@@ -31,7 +32,7 @@ export default function decorate(block) {
     titleWrapper.className = 'nsw-card__title';
 
     // move the children of the second div to the titleWrapper
-    while (secondDiv.firstElementChild) titleWrapper.append(secondDiv.firstElementChild);
+    while (secondColumn.firstElementChild) titleWrapper.append(secondColumn.firstElementChild);
 
     // remove the p wrapper around the <a> tag
     const a = titleWrapper.querySelector('a');
@@ -48,22 +49,22 @@ export default function decorate(block) {
     // insert after the firstColumn
     firstColumn.after(contentWrapper);
 
-    secondDiv.remove();
+    secondColumn.remove();
 
     // case (3) - Third div Text (optional)
-    if (thirdDiv.innerHTML.trim()) {
-      thirdDiv.classList.add('nsw-card__copy');
+    if (thirdColumn.innerHTML.trim()) {
+      thirdColumn.classList.add('nsw-card__copy');
 
       // insert after the third div
-      contentWrapper.append(thirdDiv);
+      contentWrapper.append(thirdColumn);
     } else {
-      thirdDiv.remove();
+      thirdColumn.remove();
     }
 
     // case (4) - Fourth div Trailing Icon (optional)
-    if (fourthDiv.innerHTML.trim()) {
+    if (fourthColumn.innerHTML.trim()) {
       // get the current type of icon
-      const icon = fourthDiv.querySelector('.icon');
+      const icon = fourthColumn.querySelector('.icon');
       if (icon) {
         const p = icon.closest('p');
         if (p) {
@@ -83,7 +84,7 @@ export default function decorate(block) {
           icon.textContent = 'east';
         }
       }
-      contentWrapper.append(fourthDiv);
+      contentWrapper.append(fourthColumn);
     }
 
     ul.append(li);

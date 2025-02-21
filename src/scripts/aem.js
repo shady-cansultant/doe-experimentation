@@ -586,7 +586,7 @@ async function loadBlock(block) {
         (async () => {
           try {
             const mod = await import(
-              `../blocks/${blockName}/${blockName}.js`
+              `Blocks/${blockName}/${blockName}.js`
             );
             if (mod.default) {
               await mod.default(block);
