@@ -1,6 +1,10 @@
 @use 'sass:math';
 
-.nsw-container {
+/*
+ * Instead of creating a 'nsw-container' wrapper, we automatically
+ * wrap the children
+ */
+.nsw-section > div {
   @include container;
 
   &--flush {
