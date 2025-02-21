@@ -2,3 +2,4 @@ helix-importer-ui
 dist/*
 vite.config.ts
 vitest.config.js
+vite.helpers.js
