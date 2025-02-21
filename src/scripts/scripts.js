@@ -10,7 +10,6 @@ import {
   waitForFirstImage,
   loadSection,
   loadSections,
-  loadCSS,
 } from './aem.js';
 
 /**
@@ -51,7 +50,8 @@ export function moveInstrumentation(from, to) {
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
-  await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+  // eslint-disable-next-line import/no-unresolved, import/extensions
+  await import('Styles/fonts.scss');
   try {
     if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
   } catch (e) {
@@ -127,7 +127,8 @@ async function loadLazy(doc) {
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
-  loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+  // eslint-disable-next-line import/no-unresolved, import/extensions
+  import('Styles/lazy.scss');
   loadFonts();
 }
 

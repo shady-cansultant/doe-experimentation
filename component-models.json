@@ -125,8 +125,12 @@
             "name": "Theme",
             "children": [
               {
+                "name": "White",
+                "value": "white"
+              },
+              {
                 "name": "Light",
-                "value": "light"
+                "value": "Light"
               },
               {
                 "name": "Dark",

@@ -53,7 +53,7 @@ describe('Card', () => {
     data-aue-model="cards" 
     data-aue-label="Cards" 
     data-aue-filter="cards" 
-    class="cards highlight">
+    class="cards highlight dark horizontal">
     <div data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_522321914/block_1115629554/item" 
          data-aue-type="component" 
          data-aue-model="card" 
@@ -76,9 +76,9 @@ describe('Card', () => {
      data-aue-model="cards" 
      data-aue-label="Cards" 
      data-aue-filter="cards" 
-     class="cards highlight">
+     class="cards highlight dark horizontal">
       <ul>
-          <li class="nsw-card nsw-card--dark" 
+          <li class="nsw-card nsw-card--highlight nsw-card--dark nsw-card--horizontal" 
           data-aue-resource="urn:aemconnection:/content/doe-experimentation/index/jcr:content/root/section_522321914/block_1115629554/item" 
           data-aue-type="component" data-aue-model="card" data-aue-label="Card">
               <div class="nsw-card__image">
