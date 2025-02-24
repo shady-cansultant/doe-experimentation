@@ -1,7 +1,4 @@
-import './hero.scss';
-
-export default async function decorate(block) {
-  block.innerHTML = `
+async function e(n){n.innerHTML=`
   <div class="nsw-hero-banner nsw-hero-banner--dark nsw-hero-banner--wide">
   <div class="nsw-hero-banner__container">
     <div class="nsw-hero-banner__wrapper">
@@ -14,5 +11,5 @@ export default async function decorate(block) {
       </div>
     </div>
   </div>
-</div>`;
-}
+</div>`}export{e as default};
+//# sourceMappingURL=hero.js.map

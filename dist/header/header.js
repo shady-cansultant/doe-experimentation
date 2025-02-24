@@ -1,13 +1,4 @@
-import 'nsw-design-system/src/components/main-nav/_main-nav.scss';
-import 'nsw-design-system/src/components/header/_header.scss';
-import 'nsw-design-system/src/components/masthead/_masthead.scss';
-
-/**
- * loads and decorates the header, mainly the nav
- * @param {Element} block The header block element
- */
-export default async function decorate(block) {
-  block.innerHTML = `<nav class="nsw-skip" aria-label="Skip to links">
+import{_ as n}from"../chunks/preload-helper-C1FmrZbK.js";async function i(a){a.innerHTML=`<nav class="nsw-skip" aria-label="Skip to links">
   <a href="#main-nav"><span>Skip to navigation</span></a>
   <a href="#"><span>Skip to content</span></a>
 </nav>
@@ -442,12 +433,5 @@ export default async function decorate(block) {
       </a>    </li>
   </ul>
 </nav>
-`;
-
-  import('nsw-design-system/dist/js/main.js').then(({ default: nsw }) => {
-    new nsw.Navigation(block.querySelector('#main-nav')).init();
-    block.querySelectorAll('button.js-open-search').forEach((button) => {
-      new nsw.SiteSearch(button).init();
-    });
-  });
-}
+`,n(async()=>{const{default:s}=await import("../chunks/main-Dgjlpm3E.js").then(e=>e.m);return{default:s}},[],import.meta.url).then(({default:s})=>{new s.Navigation(a.querySelector("#main-nav")).init(),a.querySelectorAll("button.js-open-search").forEach(e=>{new s.SiteSearch(e).init()})})}export{i as default};
+//# sourceMappingURL=header.js.map

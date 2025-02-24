@@ -480,7 +480,7 @@ function decorateSections(main) {
       wrappers[wrappers.length - 1].append(e);
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
-    section.classList.add('section');
+    section.classList.add('section', 'nsw-section');
     section.dataset.sectionStatus = 'initialized';
     section.style.display = 'none';
 
@@ -586,7 +586,7 @@ async function loadBlock(block) {
         (async () => {
           try {
             const mod = await import(
-              `../blocks/${blockName}/${blockName}.js`
+              `Blocks/${blockName}/${blockName}.js`
             );
             if (mod.default) {
               await mod.default(block);
