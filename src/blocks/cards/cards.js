@@ -17,7 +17,8 @@ export default function decorate(block) {
     const [firstColumn, secondColumn, thirdColumn, fourthColumn] = li.children;
 
     // case (1) - Image exists
-    if (firstColumn.querySelector('picture')) {
+    const firstColumnFilled = !!firstColumn.querySelector('picture');
+    if (firstColumnFilled) {
       firstColumn.className = 'nsw-card__image';
     } else {
       // remove the div
@@ -47,7 +48,11 @@ export default function decorate(block) {
     contentWrapper.append(titleWrapper);
 
     // insert after the firstColumn
-    firstColumn.after(contentWrapper);
+    if (firstColumnFilled) {
+      firstColumn.after(contentWrapper);
+    } else {
+      li.prepend(contentWrapper);
+    }
 
     secondColumn.remove();
 

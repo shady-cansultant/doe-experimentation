@@ -20,6 +20,9 @@
 @import "./core/section";
 @import "./core/typography";
 
+// Components
+@import "./core/buttons";
+
 :root {
   --desktop-nav-height: 206px;
   --mobile-nav-height: 206px;
