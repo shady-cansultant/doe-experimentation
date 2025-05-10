@@ -1,0 +1,10 @@
+@import 'nsw-design-system/src/components/hero-banner/_hero-banner.scss';
+
+.hero-container {
+    padding: unset;
+}
+
+.hero-container .hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
